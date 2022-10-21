@@ -87,6 +87,46 @@ ALTER DATABASE mytest2 CHARACTER SET 'UTF8MB4'
 ```
 注意! 不能修改數據庫的名字，而在一些視覺化工具中，"似乎有改名的功能"，其實不然， 它真正的操作是創建一個新的數據庫，然後把資料全部複製過去，最後刪掉舊的資料庫，可見成本非常高!
 
+Alters the table.
+```sql
+-- 新增 constraints
+ALTER TABLE mytable 
+ADD CONSTRAINT myNew_pk PRIMARY KEY(mycolumn);
+
+-- 刪除 constraints
+ALTER TABLE mytable
+DROP CONSTRAINT myNew_pk PRIMARY KEY(mycolumn);
+
+-- 修改 column
+ALTER TABLE mytable
+MODIFY column_name column_definition
+    [ FIRST | AFTER column1 ],
+MODIFY column_name column_definition
+    [ FIRST | AFTER column2 ];
+
+-- 刪除 column
+ALTER TABLE mytable
+DROP COLUMN mycolumn;
+
+-- 新增 column
+ALTER TABLE table_name
+ADD new_column_name column_definition
+    [ FIRST | AFTER column_name ],
+ADD new_column_name column_definition
+    [ FIRST | AFTER column_name ];
+
+-- 修改column 的名字
+ALTER TABLE employees 
+RENAME COLUMN id TO new_id;
+
+-- 修改 column 預設值
+ALTER TABLE book 
+ALTER column languages SET DEFAULT 'chinese';
+
+ALTER TABLE book
+ALTER column languages DROP DEFAULT;
+```
+
 ### 3. DROP
 Delete objects from the database.
 ```sql
